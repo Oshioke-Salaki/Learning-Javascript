@@ -324,35 +324,35 @@
 ////////////////////////////////////////////////
 // Section 3: Coding Challenge #4
 //////////////////////////////////////////////////
-const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
-const tips = [];
-const totals = [];
+// const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+// const tips = [];
+// const totals = [];
 
-const calcTip = (bill) => {
-    return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
-};
+// const calcTip = (bill) => {
+//     return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+// };
 
-for (let i = 0; i < bills.length; i++) {
-    tips.push(calcTip(bills[i]));
-    totals.push(tips[i] + bills[i]);
-}
+// for (let i = 0; i < bills.length; i++) {
+//     tips.push(calcTip(bills[i]));
+//     totals.push(tips[i] + bills[i]);
+// }
 
-console.log(bills);
-console.log(tips);
-console.log(totals);
+// console.log(bills);
+// console.log(tips);
+// console.log(totals);
 
-const osh = [2, 1, 6];
+// const osh = [2, 1, 6];
 
-const calcAverage = (arr) => {
-    let sum = 0;
-    for (let i = 0; i < arr.length; i++) {
-        sum += arr[i];
-    }
+// const calcAverage = (arr) => {
+//     let sum = 0;
+//     for (let i = 0; i < arr.length; i++) {
+//         sum += arr[i];
+//     }
 
-    return sum / arr.length;
-};
+//     return sum / arr.length;
+// };
 
-console.log(calcAverage(totals));
+// console.log(calcAverage(totals));
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -364,24 +364,24 @@ console.log(calcAverage(totals));
 // Problem Solving
 ////////////////////////////////////////////////////////
 
-const temperature = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
+// const temperature = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
 
-const tempAltitudeCalc = (arr) => {
-    let highestTemp = arr[0];
-    let lowestTemp = arr[0];
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === 'error') continue;
+// const tempAltitudeCalc = (arr) => {
+//     let highestTemp = arr[0];
+//     let lowestTemp = arr[0];
+//     for (let i = 0; i < arr.length; i++) {
+//         if (arr[i] === 'error') continue;
 
-        if (highestTemp < arr[i]) highestTemp = arr[i];
-        if (lowestTemp > arr[i]) lowestTemp = arr[i];
-    }
+//         if (highestTemp < arr[i]) highestTemp = arr[i];
+//         if (lowestTemp > arr[i]) lowestTemp = arr[i];
+//     }
 
-    console.log(lowestTemp);
+//     console.log(lowestTemp);
 
-    return highestTemp - lowestTemp;
-};
+//     return highestTemp - lowestTemp;
+// };
 
-console.log(tempAltitudeCalc(temperature));
+// console.log(tempAltitudeCalc(temperature));
 
 ////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
@@ -393,17 +393,17 @@ console.log(tempAltitudeCalc(temperature));
 //Section 5: Coding challenge #1
 ////////////////////////////////////////////////////////////
 
-const printForecast = (arr) => {
-    let output = '';
+// const printForecast = (arr) => {
+//     let output = '';
 
-    for (let i = 0; i < arr.length; i++) {
-        output += `... ${arr[i]}C in ${i + 1} ${i + 1 === 1 ? 'day' : 'days'} `;
-    }
+//     for (let i = 0; i < arr.length; i++) {
+//         output += `... ${arr[i]}C in ${i + 1} ${i + 1 === 1 ? 'day' : 'days'} `;
+//     }
 
-    return output;
-};
+//     return output;
+// };
 
-console.log(printForecast([1, 3, 4]));
+// console.log(printForecast([1, 3, 4]));
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -412,3 +412,57 @@ console.log(printForecast([1, 3, 4]));
 //
 //
 /////////////////////////////////////////////////////////////
+// Destructuring
+/////////////////////////
+const resturant = {
+    name: 'Classico Italiano',
+    location: 'Via Angelo Tavanti 23, Firenza, Italy',
+    categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+    starterMenu: ['Focaccta', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+    mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+    order: function(starterIndex, mainIndex) {
+        return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+    },
+};
+
+const arr = [2, 3, 4];
+// const a  = arr[0]
+// const b  = arr[1]
+// const c  = arr[2]
+
+//This is how we destructure arrays
+const [x, y, z] = arr;
+console.log(x, y, z);
+//
+//
+//Here we take the first two consecutive values from the resturant.categoris array
+// const [first, second] = resturant.categories;
+// console.log(first, second);
+//
+//
+//Here we take non consecutive values form the resturant.categoris array. Using a Gap. i.e. first and third
+const [first, , third] = resturant.categories;
+console.log(first, third);
+//
+//
+//Using Destructing to switch two values
+// let [main, secondary] = resturant.categories;
+// [main, secondary] = [secondary, main];
+//
+//
+//Receiving 2 return values from a function
+// const [starter, main] = resturant.order(2, 0);
+// console.log(stater, main);
+//
+//
+//Handling nested arrays
+const nested = [2, 4, [5, 6]];
+
+const [a, , b] = nested;
+
+console.log(b[0]);
+
+//inner destruturing :)
+const [i, , [j, l]] = nested;
+console.log(l);
