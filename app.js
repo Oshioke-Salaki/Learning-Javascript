@@ -412,28 +412,28 @@
 //
 //
 /////////////////////////////////////////////////////////////
-// Destructuring
-/////////////////////////
-const resturant = {
-    name: 'Classico Italiano',
-    location: 'Via Angelo Tavanti 23, Firenza, Italy',
-    categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-    starterMenu: ['Focaccta', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-    mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//  Array Destructuring
+///////////////////////////////////////////////////////////
+// const resturant = {
+//     name: 'Classico Italiano',
+//     location: 'Via Angelo Tavanti 23, Firenza, Italy',
+//     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//     starterMenu: ['Focaccta', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-    order: function(starterIndex, mainIndex) {
-        return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-    },
-};
+//     order: function(starterIndex, mainIndex) {
+//         return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//     },
+// };
 
-const arr = [2, 3, 4];
+// const arr = [2, 3, 4];
 // const a  = arr[0]
 // const b  = arr[1]
 // const c  = arr[2]
 
 //This is how we destructure arrays
-const [x, y, z] = arr;
-console.log(x, y, z);
+// const [x, y, z] = arr;
+// console.log(x, y, z);
 //
 //
 //Here we take the first two consecutive values from the resturant.categoris array
@@ -442,8 +442,8 @@ console.log(x, y, z);
 //
 //
 //Here we take non consecutive values form the resturant.categoris array. Using a Gap. i.e. first and third
-const [first, , third] = resturant.categories;
-console.log(first, third);
+// const [first, , third] = resturant.categories;
+// console.log(first, third);
 //
 //
 //Using Destructing to switch two values
@@ -457,12 +457,271 @@ console.log(first, third);
 //
 //
 //Handling nested arrays
-const nested = [2, 4, [5, 6]];
+// const nested = [2, 4, [5, 6]];
 
-const [a, , b] = nested;
+// const [a, , b] = nested;
 
-console.log(b[0]);
+// console.log(b[0]);
 
 //inner destruturing :)
-const [i, , [j, l]] = nested;
-console.log(l);
+// const [i, , [j, l]] = nested;
+// console.log(l);
+/////////////////////////////////////////////////////////////
+//
+//
+////////////////////////////////////////////////////////
+//Object Destructuring
+////////////////////////////////////////////////////////
+const resturant = {
+    name: 'Classico Italiano',
+    location: 'Via Angelo Tavanti 23, Firenza, Italy',
+    categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+    starterMenu: ['Focaccta', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+    mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+    openingHours: {
+        thu: {
+            open: 12,
+            close: 22,
+        },
+        fri: {
+            open: 11,
+            close: 23,
+        },
+        sat: {
+            open: 8,
+            close: 23,
+        },
+    },
+    order: function(starterIndex, mainIndex) {
+        return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+    },
+
+    orderDelivery: function(obj) {
+        console.log(obj);
+    },
+
+    orderPasta: function(ing1, ing2, ing3) {
+        console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+    },
+
+    orderPizza: function(mainIngredient, ...otherIngredient) {
+        console.log(mainIngredient);
+        console.log(otherIngredient);
+    },
+};
+
+// resturant.orderDelivery({
+//     time: '22:30',
+//     address: 'Via del sole, 21',
+//     mainIndex: 2,
+//     starterIndex: 2,
+// });
+
+//Use {} for object destructuring
+//The order of the elements does not matter. But you have to use the exact property name.
+// const { name, openingHours, categories } = resturant;
+// console.log(name, openingHours, categories);
+
+//But if we want custom names we use :
+// const {
+//     name: resturantName,
+//     openingHours: hours,
+//     categories: tags,
+// } = resturant;
+
+// console.log(resturantName, hours, tags);
+
+//setting default values
+// const { menu = [], starterMenu: starters = [] } = resturant;
+
+//Mutating variables while destruturing objects
+// let a = 111;
+// let b = 999;
+
+// const obj = { a: 23, b: 7, c: 14 };
+//wrap in ()
+// ({ a, b } = obj);
+
+// console.log(a, b);
+
+//Handling nested objects
+// const {
+//     fri: { open: start = '', close: close = '', jjkk: yo = '' },
+// } = openingHours;
+
+// console.log(start, yo);
+
+/////////////////////////////////////////////////////////
+//
+//
+//
+//////////////////////////////////////////////////
+// The Spread Operator "..."
+//////////////////////////////////////////////////
+const arr = [7, 8, 9];
+
+const newArray = [1, 2, ...arr];
+console.log(newArray);
+
+//This logs the individual elements of the array
+console.log(...newArray);
+
+const newMenu = [...resturant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+//Copy array
+const mainMenuCopy = [...resturant.mainMenu];
+
+//Join 2 arrays
+const menu = [...resturant.mainMenu, ...resturant.starterMenu];
+console.log(menu);
+
+//The spread operator works on all iterables.
+const str = 'Jonas';
+const letters = [...str, ' ', 's. '];
+console.log(letters);
+
+//We can't use the spread operator in template literals
+
+//Passing an array as an argument into a function using the spread operator
+// const ingredients = [
+//     prompt("Let's make pasta! Ingredient 1?"),
+//     prompt("Let's make pasta! Ingredient 2?"),
+//     prompt("Let's make pasta! Ingredient 3?"),
+// ];
+
+const ingredients = [1, 2, 3];
+
+console.log(ingredients);
+
+resturant.orderPasta(...ingredients);
+
+//Also works on objects :)
+const newResturant = { foundedIn: 1998, ...resturant, founder: 'Valentino' };
+
+console.log(newResturant);
+
+//We can also use spread operator to create shallow copies of objects without using object.assign
+const resturantCopy = {...resturant };
+resturantCopy.name = 'Ristoranto Roma';
+console.log(resturantCopy);
+//////////////////////////////////////////////////////////////
+//
+//
+//////////////////////////////////////////////////////////////
+//The Rest Pattern
+//////////////////////////////////////////////////////////////
+//spread is used on the right side of assignment operator
+const arrs = [1, 2, ...[3, 4]];
+console.log(arrs);
+//You can also use it on the left side for destructuring(REST)
+//This carries the "REST" of the elements and puts them into a new array
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(others);
+
+//The rest element has to be the last element. And ther can be only one.
+const [pizza, , risotto, ...otherFood] = [
+    ...resturant.mainMenu,
+    ...resturant.starterMenu,
+];
+console.log(otherFood);
+
+//Using it in objects
+const { sat, ...weekdays } = resturant.openingHours;
+console.log(weekdays);
+
+//Functions
+//Here the rest operator uses rest arguements and packs the arguments into 1 array.
+const add = function(...numbers) {
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+    console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+
+const x = [23, 5, 7];
+add(...x);
+
+resturant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+///////////////////////////////////////////////////////////
+//
+//
+//
+/////////////////////////////////////////////////////////////
+//Short Circuiting using && and ||
+////////////////////////////////////////////////////////////
+//Logical operators can use ANY data type
+//They can return any data type
+//Can do short-circuting or short-circuit evaluation
+
+console.log('--------OR--------');
+//In the case of the  || operator, if the first operand is a truthy value, it gets returned. In the case that both of them is falsey, it returns the last operand
+console.log(3 || 'Jonas'); //Output: 3
+console.log('' || 'Jonas'); //>>Jonas
+console.log(true || 0); //>> True
+console.log(undefined || null); //>> null
+console.log(undefined || 0 || '' || 'Hello' || 23 || null); //>>Hello
+
+//Use to set default values
+resturant.numGuests = 23;
+
+const guests1 = resturant.numGuests ? resturant.numGuests : 10;
+console.log(guests1);
+
+//As an alternative
+const guests2 = resturant.numGuests || 10;
+
+console.log('--------AND--------');
+//In the case of the AND operator short-circuits when the first value is falsey and returns that falsey value. without evaluating the 2nd operand. In the case that both of them is truthy, it returns the last operand
+console.log(0 && 'Jonas'); //0
+console.log(7 && 'Jonas'); //'Jonas'
+console.log('Hello' && 23 && null && 'Jonas'); //null
+
+//Practical example
+//Use to execute functions in the second operand if the first one is true
+if (resturant.orderPizza) {
+    resturant.orderPizza('mushroom', 'spinach');
+}
+
+//Alternative
+resturant.orderPizza && resturant.orderPizza('mushroom', 'spinach');
+
+///////////////////////////////////////////////////////////
+//
+//
+//
+///////////////////////////////////////////////////////////
+//The Nullish Coalescing Operator
+//////////////////////////////////////////////////////////
+resturant.numChairs = 0;
+const chairs = resturant.numChairs || 10;
+console.log(chairs);
+
+// const chairsCorrect = resturant.numChairs ? ? 10;
+console.log(chairsCorrect);
+
+/////////////////////////////////////////////////////////
+//
+//
+//
+/////////////////////////////////////////////
+//Logical Assignment Operator
+/////////////////////////////////
+const rest1 = {
+    name: 'Capri',
+    numGuests: 20,
+};
+const rest2 = {
+    name: 'Capriono',
+    owner: 'Givanni Rossi',
+};
+
+// rest1.numberGuests = rest1.numGuests || 10;
+// rest1.numberGuests || = 10;
+// rest2.numberGuests = rest2.numGuests || 10;
+// rest2.numberGuests || = 10;
+
+console.log(rest1);
+console.log(rest2);
