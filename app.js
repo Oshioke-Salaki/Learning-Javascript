@@ -695,6 +695,7 @@ resturant.orderPizza && resturant.orderPizza('mushroom', 'spinach');
 ///////////////////////////////////////////////////////////
 //The Nullish Coalescing Operator
 //////////////////////////////////////////////////////////
+//we use nullish coalescing operator beacause we want to be able to use 0
 resturant.numChairs = 0;
 const chairs = resturant.numChairs || 10;
 console.log(chairs);
@@ -718,10 +719,42 @@ const rest2 = {
     owner: 'Givanni Rossi',
 };
 
+//OR assignment operator
 // rest1.numberGuests = rest1.numGuests || 10;
 // rest1.numberGuests || = 10;
 // rest2.numberGuests = rest2.numGuests || 10;
 // rest2.numberGuests || = 10;
 
+//Nullish assignment operator (null or undefined)
+// rest1.numGuests ? ? = 10;
+// rest2.numGuests ? ? = 10;
+
+//AND assignment operator
+// rest1.owner = rest1.owner && '<ANONYMOUS'
+// rest1.owner && = '<ANONYMOUS'
+// rest2.owner = rest2.owner && '<ANONYMOUS'
+// rest2.owner && = '<ANONYMOUS'
+
 console.log(rest1);
 console.log(rest2);
+///////////////////////////////////////////////////////////
+//
+//
+//
+//////////////////////////////////////////////////////////
+//Optional Chaining
+/////////////////////////////////////////////////////////
+
+if (resturant.openingHours && resturant.openingHours.mon)
+    consle.log(resturant.openingHours.open);
+
+//WITH OC
+// console.log(resturant.openingHours.mon ? .open);
+// console.log(resturant.openingHours ? .mon ? .open);
+
+// //Example
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+
+// for (const day of days) {
+// console.log(resturant.openingHours[day] ?.open)
+// }
